@@ -1,21 +1,20 @@
 import React from "react"
-import { Link } from "gatsby"
+import { ApolloProvider } from "@apollo/react-hooks"
 
 import Layout from "../components/layout"
-import Image from "../components/image"
 import SEO from "../components/seo"
+import { client } from "../components/client"
+import { Todos } from "../components/todos"
 
-const IndexPage = () => (
-  <Layout>
-    <SEO title="Home" />
-    <h1>Hi people</h1>
-    <p>Welcome to your new Gatsby site.</p>
-    <p>Now go build something great.</p>
-    <div style={{ maxWidth: `300px`, marginBottom: `1.45rem` }}>
-      <Image />
-    </div>
-    <Link to="/page-2/">Go to page 2</Link>
-  </Layout>
-)
+const IndexPage = () => {
+  return (
+    <ApolloProvider client={client}>
+      <Layout>
+        <SEO title="Home" />
+        <Todos></Todos>
+      </Layout>
+    </ApolloProvider>
+  )
+}
 
 export default IndexPage
